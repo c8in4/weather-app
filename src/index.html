@@ -22,17 +22,13 @@
           />
         </label>
 
-        <fieldset>
-          <legend>Unit</legend>
-          <label for="metricRadio"
-            >metric
-            <input type="radio" checked name="unitGroup" value="metric" />
-          </label>
-          <label for="usRadio"
-            >imperial
-            <input type="radio" name="unitGroup" value="us" />
-          </label>
-        </fieldset>
+        <label for="unitGroup"
+          >Unit
+          <select name="unit" id="unitGroup">
+            <option value="metric" selected>metric</option>
+            <option value="us">imperial</option>
+          </select>
+        </label>
 
         <button type="submit" id="button">Go</button>
       </form>
