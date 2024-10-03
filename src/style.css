@@ -34,7 +34,7 @@ article {
 }
 
 body {
-  background-color: aqua;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
 }
@@ -51,4 +51,9 @@ main {
 }
 
 footer {
+}
+
+fieldset {
+  display: inline-block;
+  padding-inline: 0.5rem;
 }

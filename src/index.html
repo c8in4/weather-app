@@ -1,26 +1,62 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <header>
-    <h1>My Header</h1>
-  </header>
-  <main>
-    <nav id="menu">
-      <button class="menu-button">menu</button>
-      <ul class="drop-down-menu hidden">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Slide Show</a></li>
-        <li><a href="#">About</a></li>
-      </ul>
-    </nav>
-  </main>
-  <footer>
-    <small>made by c8in4</small>
-  </footer>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+  </head>
+  <body>
+    <header>
+      <h1>Weather App</h1>
+    </header>
+    <main>
+      <form action="">
+        <label for="location"
+          >Location
+
+          <input
+            type="text"
+            name="location"
+            id="location"
+            placeholder="London"
+          />
+        </label>
+
+        <fieldset>
+          <legend>Unit</legend>
+          <label for="metricRadio"
+            >metric
+            <input type="radio" checked name="unitGroup" value="metric" />
+          </label>
+          <label for="usRadio"
+            >imperial
+            <input type="radio" name="unitGroup" value="us" />
+          </label>
+        </fieldset>
+
+        <button type="submit" id="button">Go</button>
+      </form>
+
+      <div class="currentWeatherCard">
+        <p id="currentLocation">location</p>
+        <p><small id="lastUpdate">last update</small></p>
+        <p id="conditions">conditions</p>
+        <p id="description">description</p>
+        <p id="temperature">temperature</p>
+        <p id="pressure">pressure</p>
+        <div id="wind">
+          <p id="windDirection">wind direction</p>
+          <p id="windSpeed">wind speed</p>
+          <p id="windGust">wind gust</p>
+        </div>
+        <div id="sunriseSunset">
+          <p id="sunrise">sunrise</p>
+          <p id="sunset">sunset</p>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <small>made by c8in4</small>
+    </footer>
+  </body>
 </html>
