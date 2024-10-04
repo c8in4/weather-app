@@ -22,7 +22,9 @@ button.addEventListener("click", (e) => {
     tempUnit = "F"
     windUnit = "mph"
   }
-  getWeatherData(location, unitGroup).then(displayCurrentConditions)
+  getWeatherData(location, unitGroup)
+    .then(displayCurrentConditions)
+    .catch(console.log)
 })
 
 function displayCurrentConditions(data) {

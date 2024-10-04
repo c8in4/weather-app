@@ -5,10 +5,14 @@ export async function getWeatherData(location, unitGroup) {
 
   try {
     const response = await fetch(url, { mode: "cors" })
-    const data = await response.json()
-    // console.log(data)
-    return data
+    if (!response.ok) {
+      throw new Error("Response status: " + response.status)
+    }
+    const json = await response.json()
+    // console.log(json)
+    return json
   } catch (error) {
+    alert(`The location "${location}" could not be found.`)
     console.log(error)
   }
 }
