@@ -10,7 +10,7 @@
       <h1>Weather App</h1>
     </header>
     <main>
-      <form action="">
+      <form id="searchBar">
         <label for="location"
           >Location
 
@@ -30,25 +30,44 @@
           </select>
         </label>
 
-        <button type="submit" id="button">Go</button>
+        <button type="submit" id="button">Search</button>
       </form>
 
-      <div class="currentWeatherCard">
-        <p id="currentLocation">location</p>
-        <p><small id="lastUpdate">last update</small></p>
-        <p id="conditions">conditions</p>
-        <p id="description">description</p>
-        <p id="temperature">temperature</p>
-        <p id="pressure">pressure</p>
-        <div id="wind">
-          <p id="windDirection">wind direction</p>
-          <p id="windSpeed">wind speed</p>
-          <p id="windGust">wind gust</p>
+      <div class="weatherCard">
+        <h3 id="currentLocation">location</h3>
+
+        <div class="currentWeather">
+          <div class="display-flex gap-05rem align-items-center">
+            <div class="display-flex gap-05rem align-items-center">
+              <img id="currentWeatherIcon" src="#" alt="Weather Icon" />
+              <p id="temperature" class="font-size-2rem bold"></p>
+            </div>
+            <div>
+              <p id="humidity">humidity</p>
+              <div id="wind">
+                <h4>Wind:</h4>
+                <p id="windDirection">direction</p>
+                <p id="windSpeed">speed</p>
+                <p id="windGust">gust</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="align-right">
+            <h2>Weather</h2>
+            <p id="lastUpdate">last update</p>
+            <p id="conditions">conditions</p>
+          </div>
         </div>
-        <div id="sunriseSunset">
-          <p id="sunrise">sunrise</p>
-          <p id="sunset">sunset</p>
-        </div>
+
+        <div class="otherStuff"></div>
+      </div>
+
+      <p id="pressure">pressure</p>
+      <p id="description">description</p>
+      <div id="sunriseSunset">
+        <p id="sunrise">sunrise</p>
+        <p id="sunset">sunset</p>
       </div>
     </main>
     <footer>

@@ -25,18 +25,12 @@ figcaption {
   max-width: 65ch;
 }
 
-header,
-footer,
-main,
-section,
-article {
-  container-type: inline-size;
-}
-
 body {
   min-height: 100dvh;
+  font-family: sans-serif;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 header {
@@ -44,6 +38,9 @@ header {
 
 main {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .hidden {
@@ -57,3 +54,69 @@ fieldset {
   display: inline-block;
   padding-inline: 0.5rem;
 }
+
+#searchBar {
+  margin: 1rem;
+  padding: 0.5rem 1rem;
+  width: max-content;
+  border-radius: 0.5rem;
+  box-shadow: 2px 2px 2px 2px gray;
+}
+
+#searchBar input {
+  padding-inline: 0.5rem;
+  border: none;
+  border-bottom: 1px solid #333;
+}
+
+#searchBar input:focus {
+  outline: none;
+}
+
+.weatherCard {
+  margin: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #333;
+  color: #fff;
+  width: 72ch;
+  border-radius: 0.5rem;
+}
+
+.currentWeather {
+  margin: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+#currentWeatherIcon {
+  aspect-ratio: 1;
+  display: inline;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  outline: 2px solid red;
+}
+
+.font-size-2rem {
+  font-size: 2rem;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.display-flex {
+  display: flex;
+}
+
+.gap-05rem {
+  gap: 0.5rem;
+}
+
+.align-items-center {
+  align-items: center;
+}
+/* outline: 2px solid red; */

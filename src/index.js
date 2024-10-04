@@ -43,16 +43,15 @@ function displayCurrentConditions(data) {
 
   const lastUpdate = document.querySelector("#lastUpdate")
   console.log("Last Update: " + currentConditions.datetime)
-  lastUpdate.textContent = "Last Update: " + currentConditions.datetime
+  lastUpdate.textContent = currentConditions.datetime
 
   const conditions = document.querySelector("#conditions")
   console.log("Conditions: " + currentConditions.conditions)
-  conditions.textContent =
-    "Conditions: " +
-    currentConditions.conditions +
-    " (~" +
-    currentConditions.cloudcover +
-    "%)"
+  conditions.textContent = currentConditions.conditions
+  // +
+  // " (~" +
+  // currentConditions.cloudcover +
+  // "%)"
 
   const description = document.querySelector("#description")
   console.log(data.description)
@@ -60,8 +59,7 @@ function displayCurrentConditions(data) {
 
   const temperature = document.querySelector("#temperature")
   console.log("Temperature: " + currentConditions.temp)
-  temperature.textContent =
-    "Temperature: " + currentConditions.temp + " º" + tempUnit
+  temperature.textContent = currentConditions.temp + "º" + tempUnit
 
   const pressure = document.querySelector("#pressure")
   console.log("Pressure: " + currentConditions.pressure)
@@ -69,17 +67,15 @@ function displayCurrentConditions(data) {
 
   const windDir = document.querySelector("#windDirection")
   console.log("Wind Direction: " + currentConditions.winddir)
-  windDir.textContent = "Wind Direction: " + currentConditions.winddir
+  windDir.textContent = "Direction: " + currentConditions.winddir + "º"
 
   const windSpeed = document.querySelector("#windSpeed")
   console.log("Wind Speed: " + currentConditions.windspeed)
-  windSpeed.textContent =
-    "Wind Speed: " + currentConditions.windspeed + " " + windUnit
+  windSpeed.textContent = "Speed: " + currentConditions.windspeed + windUnit
 
   const windGust = document.querySelector("#windGust")
   console.log("Wind Gust: " + currentConditions.windgust)
-  windGust.textContent =
-    "Wind Gust: " + currentConditions.windgust + " " + windUnit
+  windGust.textContent = "Gust: " + currentConditions.windgust + windUnit
 
   const sunrise = document.querySelector("#sunrise")
   console.log("Sunrise: " + currentConditions.sunrise)
@@ -89,6 +85,10 @@ function displayCurrentConditions(data) {
   console.log("Sunset: " + currentConditions.sunset)
   sunset.textContent = "Sunset: " + currentConditions.sunset
 
+  const humidity = document.querySelector("#humidity")
   console.log("Humidity: " + currentConditions.humidity)
+  humidity.textContent =
+    "Humidity: " + Math.round(currentConditions.humidity) + "%"
+
   console.groupEnd()
 }
