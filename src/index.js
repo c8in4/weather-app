@@ -41,7 +41,7 @@ function displayCurrentConditions(data) {
   const currentWeatherIcon = document.querySelector("#currentWeatherIcon")
   console.log("Current condition Icon: " + currentConditions.icon)
   currentWeatherIcon.alt = currentConditions.icon + ' Icon'
-  currentWeatherIcon.src =
+  currentWeatherIcon.src =    
     "./assets/weatherIcons/" + currentConditions.icon + ".svg"
   console.log("./assets/weatherIcons/" + currentConditions.icon + ".svg")
 
