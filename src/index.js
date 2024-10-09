@@ -1,8 +1,5 @@
-// import dropDownMenu from "@c8in4/drop-down-npm"
 import { getWeatherData } from "./weatherDataApi"
 import "./style.css"
-
-// dropDownMenu("menu")
 
 const locationInput = document.querySelector("#location")
 const button = document.querySelector("#button")
@@ -16,10 +13,10 @@ button.addEventListener("click", (e) => {
   const location = locationInput.value || "London"
   unitGroup = document.querySelector("select").value
   if (unitGroup == "metric") {
-    tempUnit = "C"
+    tempUnit = "ºC"
     windUnit = "km/h"
   } else if (unitGroup == "us") {
-    tempUnit = "F"
+    tempUnit = "ºF"
     windUnit = "mph"
   }
   getWeatherData(location, unitGroup)
@@ -41,6 +38,13 @@ function displayCurrentConditions(data) {
   console.group("Current Conditions")
   console.log(currentConditions)
 
+  const currentWeatherIcon = document.querySelector("#currentWeatherIcon")
+  console.log("Current condition Icon: " + currentConditions.icon)
+  currentWeatherIcon.alt = currentConditions.icon + ' Icon'
+  currentWeatherIcon.src =
+    "./assets/weatherIcons/" + currentConditions.icon + ".svg"
+  console.log("./assets/weatherIcons/" + currentConditions.icon + ".svg")
+
   const lastUpdate = document.querySelector("#lastUpdate")
   console.log("Last Update: " + currentConditions.datetime)
   lastUpdate.textContent = currentConditions.datetime
@@ -59,7 +63,7 @@ function displayCurrentConditions(data) {
 
   const temperature = document.querySelector("#temperature")
   console.log("Temperature: " + currentConditions.temp)
-  temperature.textContent = currentConditions.temp + "º" + tempUnit
+  temperature.textContent = currentConditions.temp + tempUnit
 
   const pressure = document.querySelector("#pressure")
   console.log("Pressure: " + currentConditions.pressure)
