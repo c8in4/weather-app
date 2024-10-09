@@ -90,10 +90,13 @@ fieldset {
 
 #currentWeatherIcon {
   aspect-ratio: 1;
+  height: 5rem;
+  overflow: scroll;
+  background-color: #ffffff;
+  color: black;
   display: inline;
   padding: 0.5rem;
   border-radius: 0.5rem;
-  outline: 2px solid red;
 }
 
 .font-size-2rem {
