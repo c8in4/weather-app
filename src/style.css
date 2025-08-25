@@ -1,12 +1,54 @@
+/* 1. Use a more-intuitive box-sizing model */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
+/* 2. Remove default margin */
 * {
-  padding: 0;
   margin: 0;
+}
+
+body {
+  /* 4. Add accessible line-height */
+  line-height: 1.5;
+  /* 5. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 6. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+  text-wrap: pretty;
 }
 
 h1,
@@ -18,108 +60,93 @@ h6 {
   text-wrap: balance;
 }
 
-p,
-li,
-figcaption {
-  text-wrap: pretty;
-  max-width: 65ch;
+/*
+  10. Create a root stacking context
+*/
+#root,
+#__next {
+  isolation: isolate;
 }
+
+:root {
+  --clr-bg-dark: oklch(0.92 0 110);
+  --clr-bg: oklch(0.96 0 110);
+  --clr-bg-light: oklch(1 0 110);
+  --clr-text: oklch(0.15 0 110);
+  --clr-text-muted: oklch(0.4 0 110);
+  --clr-highlight: oklch(1 0 110);
+  --clr-border: oklch(0.6 0 110);
+  --clr-border-muted: oklch(0.7 0 110);
+
+  --clr-primary: oklch(0.76 0.1 240);
+  --clr-secondary: oklch(0.76 0.1 300);
+  --clr-tertiary: oklch(0.76 0.1 270);
+
+  --clr-danger: oklch(0.7 0.1 30);
+  --clr-warning: oklch(0.7 0.1 100);
+  --clr-success: oklch(0.7 0.1 160);
+  --clr-info: oklch(0.7 0.1 260);
+
+  --box-shadow: 0.1rem 0.1rem 0.5rem var(--clr-text-muted);
+}
+
+body.dark {
+  /* oklch */
+  --clr-bg-dark: oklch(0.05 0 110);
+  --clr-bg: oklch(0.15 0 110);
+  --clr-bg-light: oklch(0.25 0 110);
+  --clr-text: oklch(0.96 0 110);
+  --clr-text-muted: oklch(0.76 0 110);
+  --clr-highlight: oklch(0.5 0 110);
+  --clr-border: oklch(0.4 0 110);
+  --clr-border-muted: oklch(0.3 0 110);
+
+  --clr-primary: oklch(0.4 0.1 240);
+  --clr-secondary: oklch(0.4 0.1 300);
+  --clr-tertiary: oklch(0.4 0.1 270);
+
+  --clr-danger: oklch(0.5 0.1 30);
+  --clr-warning: oklch(0.5 0.1 100);
+  --clr-success: oklch(0.5 0.1 160);
+  --clr-info: oklch(0.5 0.1 260);
+
+  --box-shadow: 0.5rem 0.5rem 1.5rem var(--clr-border-muted);
+}
+
+.theme-button {
+  background-color: var(--clr-bg-dark);
+  position: fixed;
+  right: 0.5rem;
+  top: 0.5rem;
+  padding: 0.2rem 0.5rem;
+  border: 0.1rem solid var(--clr-border-muted);
+  border-radius: 0.5rem;
+}
+
+.theme-button:hover {
+  background-color: var(--clr-bg-light);
+  border-color: var(--clr-border);
+  cursor: pointer;
+}
+
+/* END of resets and theming */
 
 body {
-  min-height: 100dvh;
-  font-family: sans-serif;
+  height: 100dvh;
+  background-color: var(--clr-bg);
+  color: var(--clr-text);
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
-header {
-}
+header {}
 
 main {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .hidden {
   display: none;
 }
 
-footer {
-}
-
-fieldset {
-  display: inline-block;
-  padding-inline: 0.5rem;
-}
-
-#searchBar {
-  margin: 1rem;
-  padding: 0.5rem 1rem;
-  width: max-content;
-  border-radius: 0.5rem;
-  box-shadow: 2px 2px 2px 2px gray;
-}
-
-#searchBar input {
-  padding-inline: 0.5rem;
-  border: none;
-  border-bottom: 1px solid #333;
-}
-
-#searchBar input:focus {
-  outline: none;
-}
-
-.weatherCard {
-  margin: 1rem;
-  padding: 0.5rem 1rem;
-  background-color: #333;
-  color: #fff;
-  width: 72ch;
-  border-radius: 0.5rem;
-}
-
-.currentWeather {
-  margin: 0.5rem;
-  display: flex;
-  justify-content: space-between;
-}
-
-#currentWeatherIcon {
-  aspect-ratio: 1;
-  height: 5rem;
-  overflow: scroll;
-  background-color: #ffffff;
-  color: black;
-  display: inline;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-}
-
-.font-size-2rem {
-  font-size: 2rem;
-}
-
-.bold {
-  font-weight: bold;
-}
-
-.align-right {
-  text-align: right;
-}
-
-.display-flex {
-  display: flex;
-}
-
-.gap-05rem {
-  gap: 0.5rem;
-}
-
-.align-items-center {
-  align-items: center;
-}
-/* outline: 2px solid red; */
+footer {}

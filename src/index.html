@@ -1,82 +1,29 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weather App</title>
-  </head>
-  <body>
-    <header>
-      <h1>Weather App</h1>
-    </header>
-    <main>
-      <!-- Search Bar -->
-      <form id="searchBar">
-        <label for="location"
-          >Location
 
-          <input
-            type="text"
-            name="location"
-            id="location"
-            placeholder="London, UK"
-          />
-        </label>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
 
-        <label for="unitGroup"
-          >Unit
-          <select name="unit" id="unitGroup">
-            <option value="metric" selected>metric</option>
-            <option value="us">imperial</option>
-          </select>
-        </label>
+<body>
+  <header>
+    <h1>My Header</h1>
+  </header>
+  <main>
+    main stuff
+  </main>
+  <footer>
+    <small>made by c8in4</small>
+  </footer>
 
-        <button type="submit" id="button">Search</button>
-      </form>
+  <div class="theme-button" onclick="toggleTheme()">Switch Theme</div>
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle("dark");
+    }
+  </script>
+</body>
 
-      <!-- Weather Card -->
-      <div class="weatherCard">
-        <h3 id="currentLocation">location</h3>
-
-        <!-- Current Weather Conditions -->
-        <div class="currentWeather">
-          <div class="display-flex gap-05rem align-items-center">
-            <div class="display-flex gap-05rem align-items-center">
-              <img id="currentWeatherIcon" src="#" alt="Weather Icon" />
-              <p id="temperature" class="font-size-2rem bold"></p>
-            </div>
-            <div>
-              <p id="humidity">humidity</p>
-              <div id="wind">
-                <h4>Wind:</h4>
-                <p id="windDirection">direction</p>
-                <p id="windSpeed">speed</p>
-                <p id="windGust">gust</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="align-right">
-            <h2>Weather</h2>
-            <p id="lastUpdate">last update</p>
-            <p id="conditions">conditions</p>
-          </div>
-        </div>
-
-        <!-- Weather Forecast -->
-        <div class="otherStuff"></div>
-      </div>
-
-      <!-- Other information -->
-      <p id="pressure">pressure</p>
-      <p id="description">description</p>
-      <div id="sunriseSunset">
-        <p id="sunrise">sunrise</p>
-        <p id="sunset">sunset</p>
-      </div>
-    </main>
-    <footer>
-      <small>made by c8in4</small>
-    </footer>
-  </body>
 </html>
