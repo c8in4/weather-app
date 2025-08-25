@@ -4,15 +4,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Weather App</title>
 </head>
 
 <body>
   <header>
-    <h1>My Header</h1>
+    <h1>Weather App</h1>
   </header>
   <main>
-    main stuff
+    <form method="get">
+      <input type="text" name="location" id="locationInput">
+      <select name="unitGroup" id="unitGroupSelect">
+        <option value="metric" selected>ºC</option>
+        <option value="us">ºF</option>
+      </select>
+      <button type="submit">Get Weather</button>
+    </form>
   </main>
   <footer>
     <small>made by c8in4</small>

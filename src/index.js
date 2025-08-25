@@ -1,5 +1,5 @@
 import "./style.css"
-
+import getWeatherData from "./weatherAPI"
 console.log("hello from JS")
 
 // search location
@@ -19,6 +19,7 @@ console.log("hello from JS")
 // from the API and return an object with only the data you require
 // for your app.
 
+// TODO:
 // Set up a form that will let users input their location and
 // will fetch the weather info (still just console.log() it).
 
@@ -41,48 +42,14 @@ let location = "twizel"
 let unitGroup = "metric"
 // let unitGroup = "us"
 
-async function getWeatherData(location, unitGroup) {
-  const API_KEY = "62YSW5FAU63UJ42MCC2AZZYGN"
-  const API_URL = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=${unitGroup}&key=${API_KEY}&contentType=json`
-  try {
-    const response = await fetch(API_URL, { mode: "cors" })
-    if (!response.ok) {
-      throw response
-    }
-    return await response.json()
-  } catch (error) {
-    console.error("Error: ", error)
-  }
+function getUserInputs() {
+  const locationInput = document.querySelector("#locationInput")
+  const unitGroupSelect = document.querySelector("#unitGroupSelect")
+  console.log(locationInput, unitGroupSelect)
+
+  return { location: locationInput.value, unitGroup: unitGroupSelect.value }
 }
 
-getWeatherData(location, unitGroup)
-  .then(stripWeatherData)
-  .then((response) => {
-    console.log(response)
-  })
+const weatherData = getWeatherData(location, unitGroup)
 
-function stripWeatherData(weatherData) {
-  return {
-    address: weatherData.resolvedAddress,
-    description: weatherData.description,
-    currentConditions: stripConditions(weatherData.currentConditions),
-    days: weatherData.days,
-  }
-}
-
-function stripConditions(currentConditions) {
-  return {
-    datetime: currentConditions.datetime,
-    conditions: currentConditions.conditions,
-    icon: currentConditions.icon,
-    temp: currentConditions.temp,
-    feelslike: currentConditions.feelslike,
-    humidity: currentConditions.humidity,
-    pressure: currentConditions.pressure,
-    sunrise: currentConditions.sunrise,
-    sunset: currentConditions.sunset,
-    winddir: currentConditions.winddir,
-    windspeed: currentConditions.windspeed,
-    windgust: currentConditions.windgust,
-  }
-}
+weatherData.then(console.log)
