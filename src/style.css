@@ -88,6 +88,8 @@ h6 {
   --clr-info: oklch(0.7 0.1 260);
 
   --box-shadow: 0.1rem 0.1rem 0.5rem var(--clr-text-muted);
+  --border-radius: 0.5rem;
+  --outline: 1px solid red;
 }
 
 body.dark {
@@ -133,20 +135,91 @@ body.dark {
 
 body {
   height: 100dvh;
+  font-family: Arial, Helvetica, sans-serif;
   background-color: var(--clr-bg);
   color: var(--clr-text);
   display: flex;
   flex-direction: column;
 }
 
-header {}
+header,
+footer {
+  background-color: var(--clr-primary);
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+footer {
+  padding: 0.5rem;
+}
 
 main {
+  /* outline: var(--outline); */
   flex: 1;
+
+  /* overflow-y: scroll; */
+
+  background-color: var(--clr-bg-dark);
+  padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+
+  >* {
+    width: clamp(300px, 80%, 75ch);
+    /* max-width: 100%; */
+  }
+
+  form {
+    /* outline: var(--outline); */
+
+    position: sticky;
+    top: 0rem;
+
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background-color: var(--clr-bg-light);
+    border-radius: var(--border-radius);
+    border: 0.1rem solid var(--clr-border);
+  }
+
+  #weatherContainer {
+    /* width: 100%; */
+    background-color: var(--clr-bg-light);
+    border-radius: var(--border-radius);
+    border: 0.1rem solid var(--clr-border);
+    /* overflow: ; */
+
+    #weatherSelector {
+      /* outline: var(--outline); */
+      border-radius: var(--border-radius) var(--border-radius) 0 0;
+
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      button {
+        border: none;
+        padding: 0.5rem 0;
+      }
+
+      button:hover {
+        cursor: pointer;
+      }
+    }
+
+    #weatherDisplay {
+      padding: 1rem;
+    }
+  }
 }
 
 .hidden {
   display: none;
 }
-
-footer {}
