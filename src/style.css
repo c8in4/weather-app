@@ -178,8 +178,8 @@ main {
   form {
     /* outline: var(--outline); */
 
-    position: sticky;
-    top: 0rem;
+    /* position: sticky;
+    top: 0rem; */
 
     display: flex;
     justify-content: center;
@@ -216,6 +216,10 @@ main {
 
     #weatherDisplay {
       padding: 1rem;
+
+      img {
+        height: 3rem;
+      }
     }
   }
 }

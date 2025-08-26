@@ -7,6 +7,7 @@ export default async function getWeatherData(location, unitGroup) {
       throw response
     }
     const weatherData = await response.json()
+    console.log("weatherAPI - full weather data: ", weatherData)
     return stripWeatherData(weatherData)
   } catch (error) {
     console.error("Error: ", error)
@@ -18,8 +19,8 @@ function stripWeatherData(weatherData) {
     address: weatherData.resolvedAddress,
     description: weatherData.description,
     currentConditions: stripConditions(weatherData.currentConditions),
-    // days: weatherData.days, // all data,
-    days: weatherData.days.map((day) => stripConditions(day)),
+    days: weatherData.days, // all data,
+    // days: weatherData.days.map((day) => stripConditions(day)),
   }
 }
 
