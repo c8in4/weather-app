@@ -228,7 +228,25 @@ main {
     #weatherDisplay {
       padding: 1rem;
 
+      .currentWeather {}
+
+      .todaysWeather {
+        .hourlyDiv {
+          /* display: grid; */
+          /* grid-template-columns: 1fr 1fr; */
+          /* flex-wrap: wrap; */
+        }
+
+      }
+
+      .fourteenDaysWeather {
+        /* display: flex; */
+        /* flex-wrap: wrap; */
+      }
+
       img {
+
+        background-color: white;
         height: 5rem;
         aspect-ratio: 1;
         padding: 0.25rem;
