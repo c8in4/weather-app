@@ -129,12 +129,11 @@ function createTodaysWeatherContent(unit) {
   const windPara = createParagraph(
     `Wind: ${winddir}º, ${windspeed} - ${windgust} ${unit.speed}`,
   )
+  const hourlyHeader = document.createElement("h3")
 
   const hourlyDiv = document.createElement("div")
   hourlyDiv.classList.add("hourlyDiv")
-  const hourlyHeader = document.createElement("h3")
   hourlyHeader.textContent = "Hourly"
-  hourlyDiv.appendChild(hourlyHeader)
 
   hours.forEach((hour, index) => {
     // if (5 < index && index < 23) {
@@ -173,6 +172,7 @@ function createTodaysWeatherContent(unit) {
     sunrisePara,
     sunsetPara,
     windPara,
+    hourlyHeader,
     hourlyDiv,
   )
   return weatherContentDiv
@@ -188,6 +188,9 @@ function createFourteenDaysWeatherContent(unit) {
   weatherContentDiv.appendChild(addressHeader)
 
   const days = weatherData.days
+
+  const fourteenDaysDiv = document.createElement("div")
+  fourteenDaysDiv.classList.add("fourteenDaysDiv")
 
   days.forEach((day, index) => {
     if (index == 0) return
@@ -207,8 +210,8 @@ function createFourteenDaysWeatherContent(unit) {
       conditions,
     } = day
 
-    const dailyDiv = document.createElement("div")
-    dailyDiv.classList.add("dailyDiv")
+    const dayCard = document.createElement("div")
+    dayCard.classList.add("dayCard")
 
     const datetimePara = createParagraph(datetime)
     const descriptionPara = createParagraph(description)
@@ -229,7 +232,7 @@ function createFourteenDaysWeatherContent(unit) {
       `Wind: ${winddir}º, ${windspeed} - ${windgust} ${unit.speed}`,
     )
 
-    dailyDiv.append(
+    dayCard.append(
       datetimePara,
       descriptionPara,
       iconImg,
@@ -242,9 +245,10 @@ function createFourteenDaysWeatherContent(unit) {
       windPara,
     )
 
-    weatherContentDiv.appendChild(dailyDiv)
+    fourteenDaysDiv.appendChild(dayCard)
   })
 
+  weatherContentDiv.appendChild(fourteenDaysDiv)
   return weatherContentDiv
 }
 

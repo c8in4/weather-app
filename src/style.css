@@ -230,18 +230,19 @@ main {
 
       .currentWeather {}
 
-      .todaysWeather {
-        .hourlyDiv {
-          /* display: grid; */
-          /* grid-template-columns: 1fr 1fr; */
-          /* flex-wrap: wrap; */
-        }
-
+      .hourlyDiv,
+      .fourteenDaysDiv {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
       }
 
-      .fourteenDaysWeather {
-        /* display: flex; */
-        /* flex-wrap: wrap; */
+      .hourCard,
+      .dayCard {
+        background-color: var(--clr-bg-dark);
+        border: 0.1rem solid var(--clr-border);
+        border-radius: var(--border-radius);
+        padding: 1rem;
       }
 
       img {
