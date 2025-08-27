@@ -1,4 +1,16 @@
-export default function (weatherData, unitGroup) {
+export default async function (weatherData, unitGroup) {
+  console.log("displayWeatherData(): ", weatherData)
+
+  const weatherSelector = document.querySelector("#weatherSelector")
+
+  let displayType = "current" // current, today, threeDays
+
+  const weatherDisplayDiv = document.querySelector("#weatherDisplay")
+  weatherDisplayDiv.textContent = ""
+  weatherDisplayDiv.appendChild(currentWeatherContent(weatherData, unitGroup))
+}
+
+function currentWeatherContent(weatherData, unitGroup) {
   console.log(unitGroup)
 
   const currentWeatherDiv = document.createElement("div")
@@ -27,7 +39,7 @@ export default function (weatherData, unitGroup) {
   descriptionPara.textContent = description
 
   const datetimePara = document.createElement("p")
-  datetimePara.textContent = datetime
+  datetimePara.textContent = `Last update: ${datetime}`
 
   const feelslikePara = document.createElement("p")
   feelslikePara.textContent = `Feels like: ${feelslike}`
@@ -42,7 +54,7 @@ export default function (weatherData, unitGroup) {
   })
 
   const pressurePara = document.createElement("p")
-  pressurePara.textContent = pressure
+  pressurePara.textContent = `Airpressure: ${pressure}hPa`
 
   const sunrisePara = document.createElement("p")
   sunrisePara.textContent = `Sunrise: ${sunrise}`
