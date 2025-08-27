@@ -10,7 +10,7 @@ export default async function getWeatherData(location, unitGroup) {
     console.log("weatherAPI - full weather data: ", weatherData)
     return stripWeatherData(weatherData)
   } catch (error) {
-    console.error("Error: ", error)
+    console.error("Weather API Error:", error)
   }
 }
 
