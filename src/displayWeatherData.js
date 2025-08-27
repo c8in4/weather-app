@@ -1,23 +1,186 @@
-export default async function (weatherData, unitGroup) {
-  console.log("displayWeatherData(): ", weatherData)
+import { weatherData, unitGroup } from "."
 
-  const weatherSelector = document.querySelector("#weatherSelector")
+export default async function () {
+  const unit = {}
+  switch (unitGroup) {
+    case "metric":
+      unit.temperature = "C"
+      unit.speed = "km/h"
+      break
+    case "us":
+      unit.temperature = "F"
+      unit.speed = "miles/h"
+      break
 
-  let displayType = "current" // current, today, threeDays
-
-  const weatherDisplayDiv = document.querySelector("#weatherDisplay")
-  weatherDisplayDiv.textContent = ""
-  weatherDisplayDiv.appendChild(currentWeatherContent(weatherData, unitGroup))
+    default:
+      break
+  }
+  return {
+    currentWeatherContent: createCurrentWeatherContent(unit),
+    todaysWeatherContent: createTodaysWeatherContent(unit),
+    threeDaysWeatherContent: createThreeDaysWeatherContent(unit),
+  }
 }
 
-function currentWeatherContent(weatherData, unitGroup) {
-  console.log(unitGroup)
+function createCurrentWeatherContent(unit) {
+  const weatherContentDiv = document.createElement("div")
+  weatherContentDiv.classList.add = "currentWeather"
 
-  const currentWeatherDiv = document.createElement("div")
-
-  const { address, description, currentConditions } = weatherData
+  const { address, description } = weatherData
 
   const {
+    conditions,
+    datetime,
+    feelslike,
+    humidity,
+    icon,
+    pressure,
+    temp,
+    winddir,
+    windspeed,
+    windgust,
+  } = weatherData.currentConditions
+
+  const addressHeader = document.createElement("h2")
+  addressHeader.textContent = address
+  const descriptionPara = createParagraph(description)
+  const datetimePara = createParagraph(`Last update: ${datetime}`)
+  const feelslikePara = createParagraph(
+    `Feels like: ${feelslike} º${unit.temperature}`,
+  )
+  const humidityPara = document.createElement("p")
+  humidityPara.textContent = `Humidity: ${humidity}%`
+
+  const iconImg = document.createElement("img")
+  iconImg.alt = icon
+  import(`./assets/weatherIcons/${icon}.svg`).then((iconSvg) => {
+    iconImg.src = iconSvg.default
+  })
+
+  const conditionsPara = createParagraph(`Conditions: ${conditions}`)
+  const pressurePara = createParagraph(`Airpressure: ${pressure} hPa`)
+  const tempPara = createParagraph(`Temperature: ${temp} º${unit.temperature}`)
+  const windPara = createParagraph(
+    `Wind: ${winddir}º, ${windspeed} - ${windgust} ${unit.speed}`,
+  )
+
+  weatherContentDiv.append(
+    addressHeader,
+    descriptionPara,
+    iconImg,
+    conditionsPara,
+    tempPara,
+    feelslikePara,
+    humidityPara,
+    pressurePara,
+    windPara,
+    datetimePara,
+  )
+  return weatherContentDiv
+}
+
+function createTodaysWeatherContent(unit) {
+  const { address } = weatherData
+  const {
+    hours,
+    datetime,
+    description,
+    conditions,
+    temp,
+    feelslike,
+    tempmax,
+    tempmin,
+    humidity,
+    icon,
+    pressure,
+    sunrise,
+    sunset,
+    winddir,
+    windspeed,
+    windgust,
+  } = weatherData.days[0]
+
+  const weatherContentDiv = document.createElement("div")
+  weatherContentDiv.classList.add = "todaysWeather"
+
+  const addressHeader = document.createElement("h2")
+  addressHeader.textContent = address
+
+  const datetimePara = createParagraph(`Date: ${datetime}`)
+
+  const descriptionPara = createParagraph(description)
+
+  const iconImg = createIcon(icon)
+  // document.createElement("img")
+  // iconImg.alt = icon
+  // import(`./assets/weatherIcons/${icon}.svg`).then((iconSvg) => {
+  //   iconImg.src = iconSvg.default
+  // })
+
+  const conditionsPara = createParagraph(`Conditions: ${conditions}`)
+  const tempPara = createParagraph(
+    `Temperature: ${temp} º${unit.temperature}, Feels like: ${feelslike} º${unit.temperature}, Max: ${tempmax}/ Min: ${tempmin}`,
+  )
+
+  const humidityPara = createParagraph(`Humidity: ${humidity}%`)
+  const pressurePara = createParagraph(`Airpressure: ${pressure} hPa`)
+
+  const sunrisePara = createParagraph(`Sunrise: ${sunrise}`)
+  const sunsetPara = createParagraph(`Sunset: ${sunset}`)
+
+  const windPara = createParagraph(
+    `Wind: ${winddir}º, ${windspeed} - ${windgust} ${unit.speed}`,
+  )
+
+  const hourlyDiv = document.createElement("div")
+  const hourlyHeader = document.createElement("h3")
+  hourlyHeader.textContent = "Hourly"
+  hourlyDiv.appendChild(hourlyHeader)
+
+  hours.forEach((hour, index) => {
+    const { datetime, conditions, icon, temp, winddir, windspeed, windgust } =
+      hour
+
+    const timePara = createParagraph(datetime)
+    const iconImg = createIcon(icon)
+    const conditionsPara = createParagraph(conditions)
+    const tempPara = createParagraph(
+      `Temperature: ${temp} º${unit.temperature}, Feels like: ${feelslike} º${unit.temperature}`,
+    )
+    const windPara = createParagraph(
+      `Wind: ${winddir}º, ${windspeed} - ${windgust} ${unit.speed}`,
+    )
+
+    hourlyDiv.append(timePara, iconImg, conditionsPara, tempPara, windPara)
+  })
+
+  weatherContentDiv.append(
+    addressHeader,
+    datetimePara,
+    descriptionPara,
+    iconImg,
+    conditionsPara,
+
+    tempPara,
+    humidityPara,
+    pressurePara,
+    sunrisePara,
+    sunsetPara,
+    windPara,
+    hourlyDiv,
+  )
+  return weatherContentDiv
+}
+
+function createThreeDaysWeatherContent(unit) {
+  const weatherContentDiv = document.createElement("div")
+  weatherContentDiv.classList.add = "currentWeather"
+
+  return weatherContentDiv
+}
+
+function getCurrentConditions(conditionsObject) {
+  return ({
     conditions,
     datetime,
     feelslike,
@@ -30,56 +193,22 @@ function currentWeatherContent(weatherData, unitGroup) {
     winddir,
     windspeed,
     windgust,
-  } = currentConditions
+  } = conditionsObject)
+}
 
-  const addressPara = document.createElement("p")
-  addressPara.textContent = address
+function createParagraph(content) {
+  const para = document.createElement("p")
+  para.textContent = content
 
-  const descriptionPara = document.createElement("p")
-  descriptionPara.textContent = description
+  return para
+}
 
-  const datetimePara = document.createElement("p")
-  datetimePara.textContent = `Last update: ${datetime}`
-
-  const feelslikePara = document.createElement("p")
-  feelslikePara.textContent = `Feels like: ${feelslike}`
-
-  const humidityPara = document.createElement("p")
-  humidityPara.textContent = `Humidity: ${humidity}%`
-
-  const iconImg = document.createElement("img")
-  iconImg.alt = conditions
-  import(`./assets/weatherIcons/${icon}.svg`).then((icon) => {
-    iconImg.src = icon.default
+function createIcon(condition) {
+  const icon = document.createElement("img")
+  icon.alt = condition
+  import(`./assets/weatherIcons/${condition}.svg`).then((iconSvg) => {
+    icon.src = iconSvg.default
   })
 
-  const pressurePara = document.createElement("p")
-  pressurePara.textContent = `Airpressure: ${pressure}hPa`
-
-  const sunrisePara = document.createElement("p")
-  sunrisePara.textContent = `Sunrise: ${sunrise}`
-
-  const sunsetPara = document.createElement("p")
-  sunsetPara.textContent = `Sunset: ${sunset}`
-
-  const tempPara = document.createElement("p")
-  tempPara.textContent = `Temperature: ${temp}`
-
-  const windPara = document.createElement("p")
-  windPara.textContent = `Wind: ${winddir}º, ${windspeed} - ${windgust}`
-
-  currentWeatherDiv.append(
-    addressPara,
-    datetimePara,
-    descriptionPara,
-    iconImg,
-    tempPara,
-    feelslikePara,
-    humidityPara,
-    pressurePara,
-    sunrisePara,
-    sunsetPara,
-    windPara,
-  )
-  return currentWeatherDiv
+  return icon
 }

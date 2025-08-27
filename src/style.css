@@ -219,6 +219,7 @@ main {
 
       img {
         height: 3rem;
+        aspect-ratio: 1;
       }
     }
   }
