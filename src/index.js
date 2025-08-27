@@ -1,6 +1,6 @@
 import "./style.css"
 import getWeatherData from "./weatherAPI"
-import displayWeatherData from "./displayWeatherData"
+import createCurrentWeatherContent from "./createWeatherContent"
 
 export let weatherData
 export let unitGroup
@@ -14,31 +14,34 @@ weatherSelector.addEventListener("click", getWeatherType)
 
 function getWeatherType(event) {
   displayType = event.target.dataset.type
-  if (weatherData) updateWeatherContent()
+  updateWeatherContent()
 }
 
 async function updateWeatherContent() {
-  const weatherDisplayDiv = document.querySelector("#weatherDisplay")
-  weatherDisplayDiv.textContent = ""
-
-  const weatherContent = await displayWeatherData()
-
-  let newContent
-
-  switch (displayType) {
-    case "current":
-      newContent = weatherContent.currentWeatherContent
-      break
-    case "today":
-      newContent = weatherContent.todaysWeatherContent
-      break
-    case "threeDays":
-      newContent = weatherContent.threeDaysWeatherContent
-      break
-    default:
-      break
-  }
   try {
+    if (!weatherData) {
+      throw new Error("missing weather data.")
+    }
+    const weatherDisplayDiv = document.querySelector("#weatherDisplay")
+    weatherDisplayDiv.textContent = ""
+
+    const weatherContent = await createCurrentWeatherContent()
+
+    let newContent
+
+    switch (displayType) {
+      case "current":
+        newContent = weatherContent.currentWeatherContent
+        break
+      case "today":
+        newContent = weatherContent.todaysWeatherContent
+        break
+      case "fourteenDays":
+        newContent = weatherContent.fourteenDaysWeatherContent
+        break
+      default:
+        break
+    }
     weatherDisplayDiv.appendChild(newContent)
   } catch (error) {
     console.error("error updating content", error)
@@ -50,7 +53,17 @@ async function weatherButtonHandler(event) {
   const userInputs = getUserInputs()
   if (!userInputs.location) return
 
-  weatherData = await getWeatherData(userInputs.location, userInputs.unitGroup)
+  try {
+    const newWeatherData = await getWeatherData(
+      userInputs.location,
+      userInputs.unitGroup,
+    )
+    if (!newWeatherData) throw new Error("No weather data retrieved")
+
+    weatherData = newWeatherData
+  } catch (error) {
+    console.error(error)
+  }
 
   updateWeatherContent()
 
