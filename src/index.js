@@ -42,7 +42,10 @@ async function updateWeatherContent() {
       default:
         break
     }
-    weatherDisplayDiv.appendChild(newContent)
+
+    newContent.forEach((thing) => {
+      weatherDisplayDiv.appendChild(thing)
+    })
   } catch (error) {
     console.error("error updating content", error)
   }

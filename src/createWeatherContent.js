@@ -23,8 +23,7 @@ export default async function () {
 }
 
 function createCurrentWeatherContent(unit) {
-  const weatherContentDiv = document.createElement("div")
-  weatherContentDiv.classList.add("currentWeather")
+  document.querySelector("#weatherDisplay").className = "currentWeather"
 
   const { address, description } = weatherData
 
@@ -64,7 +63,7 @@ function createCurrentWeatherContent(unit) {
     `Wind: ${winddir}º, ${windspeed} - ${windgust} ${unit.speed}`,
   )
 
-  weatherContentDiv.append(
+  return [
     addressHeader,
     descriptionPara,
     iconImg,
@@ -75,8 +74,7 @@ function createCurrentWeatherContent(unit) {
     pressurePara,
     windPara,
     datetimePara,
-  )
-  return weatherContentDiv
+  ]
 }
 
 function createTodaysWeatherContent(unit) {
@@ -100,8 +98,7 @@ function createTodaysWeatherContent(unit) {
     windgust,
   } = weatherData.days[0]
 
-  const weatherContentDiv = document.createElement("div")
-  weatherContentDiv.classList.add("todaysWeather")
+  document.querySelector("#weatherDisplay").className = "todaysWeather"
 
   const addressHeader = document.createElement("h2")
   addressHeader.textContent = address
@@ -136,7 +133,7 @@ function createTodaysWeatherContent(unit) {
   hourlyHeader.textContent = "Hourly"
 
   hours.forEach((hour, index) => {
-    // if (5 < index && index < 23) {
+    // if (5 < index && index < 23) { // limit number of hourly forcasts
     const { datetime, conditions, icon, temp, winddir, windspeed, windgust } =
       hour
 
@@ -158,7 +155,7 @@ function createTodaysWeatherContent(unit) {
     // }
   })
 
-  weatherContentDiv.append(
+  return [
     addressHeader,
     datetimePara,
     descriptionPara,
@@ -174,18 +171,14 @@ function createTodaysWeatherContent(unit) {
     windPara,
     hourlyHeader,
     hourlyDiv,
-  )
-  return weatherContentDiv
+  ]
 }
 
 function createFourteenDaysWeatherContent(unit) {
-  const weatherContentDiv = document.createElement("div")
-  weatherContentDiv.classList.add("fourteenDaysWeather")
+  document.querySelector("#weatherDisplay").className = "fourteenDaysWeather"
 
   const addressHeader = document.createElement("h2")
   addressHeader.textContent = weatherData.address
-
-  weatherContentDiv.appendChild(addressHeader)
 
   const days = weatherData.days
 
@@ -248,8 +241,7 @@ function createFourteenDaysWeatherContent(unit) {
     fourteenDaysDiv.appendChild(dayCard)
   })
 
-  weatherContentDiv.appendChild(fourteenDaysDiv)
-  return weatherContentDiv
+  return [addressHeader, fourteenDaysDiv]
 }
 
 function createParagraph(content) {
