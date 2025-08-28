@@ -53,6 +53,8 @@ async function updateWeatherContent() {
 
 async function weatherButtonHandler(event) {
   event.preventDefault()
+  if (navigator.virtualKeyboard) navigator.virtualKeyboard.hide()
+
   const userInputs = getUserInputs()
   if (!userInputs.location) return
 
