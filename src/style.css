@@ -145,22 +145,56 @@ body {
 header,
 footer {
   background-color: var(--clr-primary);
+}
+
+header {
   padding: 1rem;
+
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
   align-items: center;
+  gap: 1rem;
+
+
+  form {
+    /* outline: var(--outline); */
+
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    /* border-radius: var(--border-radius); */
+    /* border: 0.1rem solid var(--clr-border); */
+
+    input {
+      width: 25ch;
+      border-radius: var(--border-radius);
+      padding: 0.5rem 1rem;
+      background-color: var(--clr-bg-light);
+      color: var(--clr-text);
+      font-weight: 600;
+    }
+
+    button {
+      font-weight: 600;
+      padding: 0.5rem;
+    }
+  }
 }
 
 
 footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 0.5rem;
 }
 
 main {
   /* outline: var(--outline); */
   flex: 1;
-
-  /* overflow-y: scroll; */
+  overflow-y: scroll;
 
   background-color: var(--clr-bg-dark);
   padding: 1rem;
@@ -175,49 +209,30 @@ main {
     /* max-width: 100%; */
   }
 
-  form {
-    /* outline: var(--outline); */
-
-    /* position: sticky;
-    top: 0rem; */
-
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    padding: 1rem;
-    background-color: var(--clr-bg-light);
-    border-radius: var(--border-radius);
-    border: 0.1rem solid var(--clr-border);
-
-    input {
-      border-radius: var(--border-radius);
-      padding: 0.25rem 0.5rem;
-    }
-
-    button {
-      font-weight: 600;
-      padding: 0.5rem;
-    }
-  }
-
   #weatherContainer {
     /* width: 100%; */
     background-color: var(--clr-bg-light);
     border-radius: var(--border-radius);
     border: 0.1rem solid var(--clr-border);
-    /* overflow: ; */
+    overflow: auto;
 
     #weatherSelector {
       /* outline: var(--outline); */
-      border-radius: var(--border-radius) var(--border-radius) 0 0;
+      /* border-radius: var(--border-radius) var(--border-radius) 0 0; */
+      /* overflow: hidden; */
 
+      border-bottom: 0.1rem solid var(--clr-border);
       display: grid;
       grid-template-columns: repeat(3, 1fr);
 
+      button+button {
+        border-left: 0.1rem solid var(--clr-border);
+      }
+
       button {
+        font-weight: 600;
         border: none;
-        padding: 0.5rem 0;
+        padding: 1rem 0;
       }
 
       button:hover {
@@ -228,12 +243,10 @@ main {
     #weatherDisplay {
       padding: 1rem;
 
-      .currentWeather {}
-
       .hourlyDiv,
       .fourteenDaysDiv {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(20ch,1fr));
+        grid-template-columns: repeat(auto-fill, minmax(20ch, 1fr));
 
         gap: 1rem;
       }
