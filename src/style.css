@@ -243,13 +243,22 @@ main {
     #weatherDisplay {
       padding: 1rem;
 
-      .hourlyDiv,
-      .fourteenDaysDiv {
+      .hourlyDiv {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(20ch, 1fr));
+        grid-auto-flow: column;
+        overflow-x: scroll;
 
         gap: 1rem;
       }
+
+      .fourteenDaysDiv {
+        display: grid;
+        gap: 1rem;
+        justify-content: center;
+        /* grid-template-rows: repeat(auto-fill, minmax(20ch, 1fr)); */
+        /* grid-template-columns: repeat(auto-fit, 20ch); */
+      }
+
 
       .hourCard,
       .dayCard {
@@ -257,6 +266,14 @@ main {
         border: 0.1rem solid var(--clr-border);
         border-radius: var(--border-radius);
         padding: 1rem;
+      }
+
+      .hourCard {
+        width: 20ch;
+      }
+
+      .dayCard {
+        width: 45ch;
       }
 
       img {

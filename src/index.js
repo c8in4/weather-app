@@ -53,20 +53,21 @@ async function updateWeatherContent() {
 
 async function weatherButtonHandler(event) {
   event.preventDefault()
-  if (navigator.virtualKeyboard) navigator.virtualKeyboard.hide()
+
+  const weatherDisplayDiv = document.querySelector("#weatherDisplay")
+  weatherDisplayDiv.textContent = "Loading..."
 
   const userInputs = getUserInputs()
   if (!userInputs.location) return
 
   try {
-    const newWeatherData = await getWeatherData(
+    weatherData = await getWeatherData(
       userInputs.location,
       userInputs.unitGroup,
     )
-    if (!newWeatherData) throw new Error("No weather data retrieved")
-
-    weatherData = newWeatherData
+    if (!weatherData) throw new Error("No weather data retrieved")
   } catch (error) {
+    weatherDisplayDiv.textContent = error
     console.error(error)
   }
 
