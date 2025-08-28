@@ -164,8 +164,6 @@ header {
     justify-content: center;
     flex-wrap: wrap;
     gap: 0.5rem;
-    /* border-radius: var(--border-radius); */
-    /* border: 0.1rem solid var(--clr-border); */
 
     input {
       width: 25ch;
@@ -206,11 +204,9 @@ main {
 
   >* {
     width: clamp(300px, 80%, 100ch);
-    /* max-width: 100%; */
   }
 
   #weatherContainer {
-    /* width: 100%; */
     background-color: var(--clr-bg-light);
     border-radius: var(--border-radius);
     border: 0.1rem solid var(--clr-border);
@@ -218,8 +214,6 @@ main {
 
     #weatherSelector {
       /* outline: var(--outline); */
-      /* border-radius: var(--border-radius) var(--border-radius) 0 0; */
-      /* overflow: hidden; */
 
       border-bottom: 0.1rem solid var(--clr-border);
       display: grid;
@@ -255,8 +249,6 @@ main {
         display: grid;
         gap: 1rem;
         justify-content: center;
-        /* grid-template-rows: repeat(auto-fill, minmax(20ch, 1fr)); */
-        /* grid-template-columns: repeat(auto-fit, 20ch); */
       }
 
 
@@ -273,7 +265,7 @@ main {
       }
 
       .dayCard {
-        width: 45ch;
+        max-width: 45ch;
       }
 
       img {
